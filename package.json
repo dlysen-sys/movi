@@ -1,0 +1,35 @@
+{
+  "name": "movi",
+  "homepage": "https://movicommunity.com",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "postbuild": "[ ! -f /Volumes/ClaudeOs/tools/package-cpanel.sh ] || bash /Volumes/ClaudeOs/tools/package-cpanel.sh",
+    "preview": "vite preview",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist --cname movicommunity.com"
+  },
+  "dependencies": {
+    "@tanstack/react-query": "^5.62.0",
+    "@wagmi/connectors": "^5.6.0",
+    "framer-motion": "^11.15.0",
+    "lucide-react": "^0.468.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-router-dom": "^6.28.0",
+    "viem": "^2.21.0",
+    "wagmi": "^2.14.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.4",
+    "autoprefixer": "^10.4.20",
+    "gh-pages": "^6.3.0",
+    "postcss": "^8.4.49",
+    "process": "^0.11.10",
+    "tailwindcss": "^3.4.16",
+    "vite": "^6.0.5"
+  }
+}

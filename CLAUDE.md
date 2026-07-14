@@ -20,8 +20,17 @@
 1. `core-technology-template.md` — React 19 + Vite + Tailwind v4 (base app). **(prerequisite)**
 2. `design-template.md` — theme + dark/light UI via CSS tokens. **(prerequisite)**
 3. `web3-integration-template.md` — wagmi + viem + Reown AppKit (needs a Reown `projectId`).
+4. `local-chain-template.md` — wire the frontend to the shared local chain for dev/testing.
 
 Related skills: `/tailwind-ui`, `/wagmi`, `/blockchain-developer`.
+
+## Smart Contracts & Testing
+MoVi's contracts + tests + deploy scripts live in the **shared Foundry workspace**, not a vendored
+Hardhat folder:
+- `/Volumes/ClaudeOs/chain/src/movi/` — contracts · `chain/test/movi/` — tests · `chain/script/movi/` — deploy
+- Run from `chain/`: `make build`, `make test`, `make node` (local anvil @ 127.0.0.1:8545), `make deploy-bsc`.
+- Local dev accounts match Hardhat's defaults (MetaMask wallets unchanged). See `chain/README.md`.
+- Deployed addresses/ABIs get copied into `src/config/contracts.js` (per `contract-integration-template.md`).
 
 ## Conventions (inherited from the workspace)
 - All contract config in `src/config/contracts.js` — never hardcode addresses/ABIs elsewhere.

@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800;900&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-movi-black text-white font-body antialiased;
+    background-image:
+      radial-gradient(ellipse 80% 50% at 50% -10%, rgba(139, 47, 224, 0.18), transparent),
+      radial-gradient(ellipse 60% 40% at 90% 20%, rgba(126, 211, 33, 0.08), transparent);
+    background-attachment: fixed;
+  }
+  ::selection {
+    @apply bg-movi-purple/40 text-white;
+  }
+}
+
+@layer components {
+  /* Primary gradient button */
+  .btn-movi {
+    @apply bg-movi-gradient text-movi-black font-display font-bold tracking-wide
+           transition-all hover:brightness-110 hover:shadow-purple active:scale-[0.98]
+           disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:brightness-100;
+  }
+  .btn-purple {
+    @apply bg-purple-gradient text-white font-display font-bold tracking-wide
+           transition-all hover:brightness-110 hover:shadow-purple active:scale-[0.98]
+           disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  .btn-outline {
+    @apply border border-movi-border bg-movi-surface text-white font-display font-semibold
+           transition-all hover:border-movi-purple/50 hover:bg-movi-card active:scale-[0.98];
+  }
+  /* Gradient text (M→1 signature) */
+  .movi-text {
+    @apply bg-clip-text text-transparent bg-movi-gradient;
+  }
+  .purple-text {
+    @apply bg-clip-text text-transparent bg-purple-gradient;
+  }
+  /* Card with subtle brand glow */
+  .card {
+    @apply bg-movi-card border border-movi-border rounded-2xl shadow-card;
+  }
+  .card-glow {
+    @apply relative bg-movi-card border border-movi-border rounded-2xl shadow-card
+           before:absolute before:inset-0 before:rounded-2xl before:bg-card-gradient
+           before:pointer-events-none;
+  }
+  .chip {
+    @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold
+           bg-movi-purple/10 border border-movi-purple/25 text-movi-purple-light;
+  }
+}
+
+@layer utilities {
+  .scrollbar-none {
+    scrollbar-width: none;
+  }
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
+  .grid-bg {
+    background-image:
+      linear-gradient(rgba(139, 47, 224, 0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(139, 47, 224, 0.06) 1px, transparent 1px);
+    background-size: 44px 44px;
+  }
+}
