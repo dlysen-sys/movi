@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "postbuild": "[ ! -f /Volumes/ClaudeOs/tools/package-cpanel.sh ] || bash /Volumes/ClaudeOs/tools/package-cpanel.sh",
+    "postbuild": "([ ! -f /Volumes/ClaudeOs/tools/package-cpanel.sh ] || bash /Volumes/ClaudeOs/tools/package-cpanel.sh); cp dist/index.html dist/404.html",
     "preview": "vite preview",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist --cname movicommunity.com"
