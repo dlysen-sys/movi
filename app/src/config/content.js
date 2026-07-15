@@ -11,7 +11,7 @@ export const PLAN = {
   unilevelUsdt: 1, // per active sponsor
   unilevelLevels: 10, // levels 1–10 (can reach deeper via auto-compress)
   unilevelTotalUsdt: 10, // forced total distributed per subscription (1 USDT × 10 active)
-  teamPowerUsdt: 1.5, // per completed group of 3 directs
+  teamPowerUsdt: 15, // per completed group of 3 directs
   teamPowerPer: 3,
   leadershipUsdt: 1, // Leader tag — paid across the whole network
   withdrawFeePct: 10,

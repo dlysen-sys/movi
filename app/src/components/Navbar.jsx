@@ -4,6 +4,7 @@ import { useAccount, useConnect, useDisconnect, useSwitchChain } from 'wagmi'
 import { Wallet, ChevronDown, Menu, X, AlertTriangle } from 'lucide-react'
 import { ACTIVE_CHAIN_ID } from '../config/wagmi'
 import { useMoviUser } from '../hooks/useMoviUser'
+import { useIsAdmin } from '../hooks/useIsAdmin'
 import Logo from './Logo'
 
 const short = (a) => (a ? `${a.slice(0, 6)}…${a.slice(-4)}` : '')
@@ -26,11 +27,16 @@ export default function Navbar() {
   const { disconnect } = useDisconnect()
   const { switchChain } = useSwitchChain()
   const { isRegistered } = useMoviUser()
+  const isAdmin = useIsAdmin()
   const [menuOpen, setMenuOpen] = useState(false)
   const [walletOpen, setWalletOpen] = useState(false)
 
   const wrongNetwork = isConnected && chain?.id !== ACTIVE_CHAIN_ID
-  const links = [...PUBLIC_LINKS, ...(isConnected && isRegistered ? APP_LINKS : [])]
+  const links = [
+    ...PUBLIC_LINKS,
+    ...(isConnected && isRegistered ? APP_LINKS : []),
+    ...(isAdmin ? [{ to: '/admin', label: 'Admin' }] : []),
+  ]
 
   useEffect(() => {
     setMenuOpen(false)

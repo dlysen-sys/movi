@@ -169,7 +169,7 @@ contract MoVi is AdminOwnable, ReentrancyGuard {
     uint256 public directBonus          = 10e18;   // 10 USDT
     uint256 public unilevelBonusPerLevel= 1e18;    // 1 USDT
     uint256 public unilevelLevels       = 10;      // levels paid per subscription
-    uint256 public teamPowerBonus       = 15e17;   // 1.5 USDT
+    uint256 public teamPowerBonus       = 15e18;   // 15 USDT
     uint256 public teamPowerPer         = 3;       // per 3 direct subscriptions
     uint256 public leadershipBonus      = 1e18;    // 1 USDT
     uint256 public withdrawFeeBps       = 1000;    // 10% (basis points)

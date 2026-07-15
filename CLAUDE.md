@@ -9,6 +9,17 @@
 > a Web3 dApp on BNB Smart Chain (React 19 + wagmi + viem), scaffolded from the workspace's
 > composable templates.
 
+## Repository Layout
+```
+projects/movi/
+  app/        # React 19 + Vite frontend (GitHub Pages → movicommunity.com). Deploy: cd app && npm run deploy
+  backend/    # movi-license API (Express, JSON store, wallet-sig auth) — Docker on the NAS (:8390)
+  contracts/  # Solidity (movi.sol + reference models). Build/test in the shared chain/ Foundry workspace
+  sessions/   # session notes + MILESTONES
+```
+Frontend commands run from `app/` (`cd app && npm run dev|build|deploy`). The backend is a separate
+Dockerized service — see `backend/README.md`.
+
 ## GitHub Repository Setup
 - Create a dedicated GitHub repository for this project (not yet created).
 - Link the repository to the local project folder (`projects/movi/`).

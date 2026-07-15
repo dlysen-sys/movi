@@ -13,8 +13,13 @@ export const ERC20_ABI = [
   { type: 'function', name: 'decimals', stateMutability: 'view', inputs: [], outputs: [{ type: 'uint8' }] },
 ]
 
-// TODO: replace with the MoVi contract ABI once compiled (chain/out/MoViCommunity.sol/…json).
-export const MOVI_ABI = []
+// MoVi contract ABI fragments used by the app (full ABI to be pasted from the
+// forge build artifact after deploy). These cover the admin gate + active check.
+export const MOVI_ABI = [
+  { type: 'function', name: 'checkIsAdmin', stateMutability: 'view', inputs: [{ name: 'addr', type: 'address' }], outputs: [{ type: 'bool' }] },
+  { type: 'function', name: 'isActive', stateMutability: 'view', inputs: [{ name: 'user', type: 'address' }], outputs: [{ type: 'bool' }] },
+  { type: 'function', name: 'owner', stateMutability: 'view', inputs: [], outputs: [{ type: 'address' }] },
+]
 
 export const isMoviDeployed = () =>
   MOVI_ADDRESS !== '0x0000000000000000000000000000000000000000'

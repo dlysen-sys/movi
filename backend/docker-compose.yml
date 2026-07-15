@@ -1,0 +1,37 @@
+# MoVi — license API + web app on ONE origin (paymongo pattern). From backend/:
+#   cd ../app && npm run build        # (re)build the frontend that gets served at /
+#   docker compose up -d              (NAS: sudo docker compose up -d)
+#   docker compose logs -f
+# Express serves the SPA at / and the API at /api on :8390; cloudflared exposes it over HTTPS.
+services:
+  movi-license:
+    image: node:20-alpine
+    container_name: movi-license
+    working_dir: /srv                 # backend lives at /srv inside the container (app/ = frontend)
+    volumes:
+      - ./:/srv                       # backend: src + node_modules + runtime data/
+      - ../app/dist:/web:ro           # built frontend (cd app && npm run build) — served at /
+    env_file: [.env]
+    environment:
+      - NODE_ENV=production
+      - PORT=8390
+      - DATA_FILE=/srv/data/licenses.json
+      - WEB_DIST=/web                 # Express serves the SPA from here (same origin as /api)
+    command: sh -c "npm install --omit=dev && npm start"
+    ports:
+      - "8390:8390"                  # host:container — MoVi's own port (paymongo uses 8088)
+    restart: always
+    mem_limit: 256m
+    logging:
+      driver: json-file
+      options: { max-size: "10m", max-file: "3" }
+
+  # Public HTTPS for the app + API on one origin (outbound-only, no port-forward). TUNNEL_TOKEN
+  # is in .env. In the Cloudflare dashboard map your hostname (e.g. movicommunity.com) →
+  # Service: HTTP → movi-license:8390 (serves both / and /api — no subdomain, no CORS).
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    container_name: movi-license-tunnel
+    command: tunnel --no-autoupdate run --token ${TUNNEL_TOKEN}
+    restart: always
+    depends_on: [movi-license]

@@ -10,6 +10,7 @@ import Deposit from './pages/Deposit'
 import Subscribe from './pages/Subscribe'
 import Withdraw from './pages/Withdraw'
 import Collect from './pages/Collect'
+import Admin from './pages/Admin'
 
 const REFERRER_KEY = 'movi_referrer'
 
@@ -39,6 +40,7 @@ export default function App() {
         <Route path="/subscribe" element={<Subscribe />} />
         <Route path="/withdraw" element={<Withdraw />} />
         <Route path="/collect" element={<Collect />} />
+        <Route path="/admin" element={<Admin />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </div>

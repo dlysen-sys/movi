@@ -1,8 +1,9 @@
 # MoVi — Milestones
 
-**Project Status:** 🟢 Website built (all routes) — brand theme + comp-plan pages live; contract pending
+**Project Status:** 🟢 LIVE at movicommunity.com (frontend) · movi.sol written · on-chain wiring pending
 **Last Updated:** 2026-07-15
-**Next Session Focus:** Write the MoVi contract (chain/src/movi/) + wire on-chain reads/writes
+**Repo:** github.com/dlysen-sys/movi · **Live:** https://movicommunity.com
+**Next Session Focus:** Deploy MoVi contract + wire on-chain; register MoVi Reown ID + allowlist domain
 **Ship Target:** 2026-07-24 (10-day cadence)
 **Stack:** React 19 + Vite + Tailwind v4 · wagmi v2 + viem · BNB Smart Chain
 
@@ -25,16 +26,27 @@
 
 ### 🟡 Phase 3: Core Features
 **Status:** UI COMPLETE — on-chain wiring pending contract
+- [x] License inventory: **`backend/`** service (Express 4, JSON store, wallet-signature auth vs
+      `movi.sol` checkIsAdmin + `ADMIN_ADDRESSES` fallback) — add/assign/mine/claim, Docker like paymongo.
+      Smoke-tested end-to-end (add→assign→mine; non-admin→403, spoofed sig→401).
+- [x] Frontend: Subscribe page shows the user's admin-issued code **masked** (reveal/copy, 30-day validity);
+      `/admin` panel manages the inventory (admin-gated); backend enforces auth.
 - [x] Public: Landing one-pager (hero, movies gallery, rewards teaser, FAQ, contact), Rewards Plan, Registration
 - [x] Auth: Dashboard, Deposit, Subscribe, Withdraw, Collect (functional UI, placeholder data)
 - [x] Comp plan encoded in `src/config/content.js` (registration/subscription, direct/unilevel/team-power/leadership, auto-compress + by-3 explainers)
 - [ ] **MoVi smart contract** (chain/src/movi/) — register, subscribe, unilevel auto-compress, team-power-by-3, leadership, withdraw
 - [ ] Wire real reads/writes (replace useMoviUser placeholders + demo localStorage registration)
 
-### ⏳ Phase 4: Ship
-**Status:** NOT STARTED
+### 🟡 Phase 4: Ship
+**Status:** IN PROGRESS — frontend LIVE
+- [x] GitHub repo created: **github.com/dlysen-sys/movi** (public) + `main` pushed
+- [x] Deployed to GitHub Pages (gh-pages branch, `movicommunity.com` CNAME) — **LIVE at
+      https://movicommunity.com**, HTTPS enforced, DNS already pointed to GitHub Pages IPs
+- [x] SPA 404.html fallback for client-side routing on Pages
+- [ ] ⚠️ Register MoVi's own Reown project ID + allowlist `movicommunity.com` (console 403:
+      shared placeholder projectId rejects the origin — wallet-connect works but "unverified")
+- [ ] Deploy MoVi contract + wire on-chain (auth pages still placeholder)
 - [ ] Security review + local/testnet dogfood
-- [ ] GitHub repo + deploy (movi.community)
 
 ---
 
